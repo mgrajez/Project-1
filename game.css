@@ -1,0 +1,50 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+  background: linear-gradient(0deg, #f9e27d, #fc9335 80%) no-repeat;
+}
+
+.game {
+  width: 500px;
+  height: 200px;
+  border: 1px solid yellow;
+  position: relative;
+}
+
+.character {
+  width: 40px;
+  height: 70px;
+  position: absolute;
+  top: 130px;
+}
+.jump {
+  animation: jump 2s;
+}
+
+@keyframes jump {
+  0% {
+    top: 130px;
+  }
+  30% {
+    top: 50px;
+  }
+  50% {
+    top: 50px;
+  }
+  100% {
+    top: 130px;
+  }
+}
+
+.block {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: 0;
+  left: 460px;
+  animation: block 4s infinite;
+}
