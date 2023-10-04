@@ -1,3 +1,5 @@
+/* GAME SCREEN */
+
 * {
   padding: 0;
   margin: 0;
@@ -6,23 +8,32 @@
 html {
   height: 100%;
   background: linear-gradient(0deg, #f9e27d, #fc9335 80%) no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* .logo-game {
+  width: 350px;
+} */
+
 .game {
-  width: 500px;
-  height: 200px;
+  width: 900px;
+  height: 210px;
   border: 1px solid yellow;
   position: relative;
+  overflow: hidden;
 }
 
 .character {
   width: 40px;
-  height: 70px;
+  height: 80px;
   position: absolute;
   top: 130px;
+  margin-left: 30px;
 }
 .jump {
-  animation: jump 2s;
+  animation: jump 1s;
 }
 
 @keyframes jump {
@@ -45,6 +56,6 @@ html {
   height: 40px;
   position: absolute;
   bottom: 0;
-  left: 460px;
+  left: 900px;
   animation: block 4s infinite;
 }

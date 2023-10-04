@@ -1,24 +1,74 @@
-const startButton = document.getElementById("start-button");
-const restartButton = document.getElementById("restart-button");
+const startButton = document.querySelector(".start-button");
+const restartButton = document.querySelector(".restart-button");
 const mainScreen = document.getElementById("game-intro");
-const gameScreen = document.getElementById("game-screen");
 const endScreen = document.getElementById("game-end");
-let game = null;
+endScreen.style.display = "none";
+const gameScreen = document.querySelector(".game");
+const gameSection = document.querySelector("#game");
+gameSection.style.display = "none";
+const block = document.querySelector(".block");
+const character = document.querySelector(".character");
+let frameCounter = 1;
+let speed = 3;
+const arrayOfImages = [
+  "./images/taco-stand.png",
+  "./images/bowl-2.png",
+  "./images/chili.png",
+  "./images/celebration.png",
+  "./images/pinata-1.png",
+  "./images/skull.png",
+  "./images/man.png",
+  "./images/tequila.png",
+  "./images/taco.png",
+  "./images/flag.png",
+  "./images/skull3.png",
+  "./images/mexican-man.png",
+  "./images/cactus.png",
+  "./images/guitar.png",
+  "./images/michelada.png",
+  "./images/mexican-skull.png",
+  "./images/pyramid.png",
+  "./images/mexican-hat.png",
+  "./images/bowl.png",
+  "./images/margarita.png",
+  "./images/maracas.png",
+  "./images/skull2.png",
+  "./images/cactus-3.png",
+];
 
-startButton.addEventListener("click", function () {
+let counter = 0;
+let position = gameScreen.getBoundingClientRect().width;
+let myInterval = null;
+
+startButton.addEventListener("click", () => {
   startGame();
 });
 
+restartButton.addEventListener("click", () => {
+  replayGame();
+});
+
 function startGame() {
-  console.log("start game");
-  gameScreen.classList.remove("hidden");
-  mainScreen.classList.add("hidden");
-  game = new Game();
-  // game.start()
+  mainScreen.style.display = "none";
+  gameSection.style.display = "block";
+  position = gameScreen.getBoundingClientRect().width;
+  gameLoop();
 }
 
-const character = document.querySelector(".character");
-let position = 460;
+function endGame() {
+  gameSection.style.display = "none";
+  endScreen.style.display = "block";
+}
+
+function replayGame() {
+  endScreen.style.display = "none";
+  gameSection.style.display = "block";
+  counter = 0;
+  position = gameScreen.getBoundingClientRect().width;
+  gameLoop();
+  speed = 3;
+}
+
 function jump() {
   character.classList.add("jump");
 }
@@ -28,7 +78,7 @@ function jump() {
 
 document.addEventListener("keydown", (event) => {
   console.log(event.key);
-  if (event.key === "ArrowUp") {
+  if (event.key === " ") {
     jump();
   }
 });
@@ -38,29 +88,52 @@ character.addEventListener("animationend", () =>
 
 // Obstacles
 
-const block = document.querySelector(".block");
-setInterval(() => {
-  position--;
-  block.style.left = position + "px";
-  if (position < -50) {
-    position = 460;
-  }
+function gameLoop() {
+  myInterval = setInterval(() => {
+    frameCounter++;
+    if (frameCounter % 600 === 0) {
+      speed += 1;
+    }
+    position -= speed;
+    block.style.left = position + "px";
+    if (position < -50) {
+      block.src = arrayOfImages[counter % arrayOfImages.length];
+      counter++;
+      position = gameScreen.getBoundingClientRect().width;
+    }
 
-  checkCollision();
-  // console.log(block);
-}, 1000 / 60);
+    if (checkCollision(character, block)) {
+      // alert("game over");
+      clearInterval(myInterval);
+      myInterval = null;
+      // displayGameover();
+      // dialog.show();
+      endGame();
+    }
+  }, 1000 / 60);
+}
 
-function checkCollision() {
+function checkCollision(character, block) {
   const blockBounding = block.getBoundingClientRect();
   const characterBounding = character.getBoundingClientRect();
 
-  const isInX = characterBounding.right > blockBounding.left;
-  const isInY = characterBounding.bottom > blockBounding.top;
+  const isInX =
+    characterBounding.right > blockBounding.left &&
+    characterBounding.left < blockBounding.right;
+  const isInY =
+    characterBounding.bottom > blockBounding.top &&
+    characterBounding.top < blockBounding.bottom;
 
-  if (position === 30) {
-    console.log(blockBounding, characterBounding);
-    debugger;
-
-    return isInX && isInY;
-  }
+  return isInX && isInY;
 }
+
+// function displayGameover() {
+//   const gameover = document.createElement("div");
+//   gameover.classList.add("gameover");
+//   gameover.innerHTML = "Game Over";
+//   document.body.appendChild(gameover);
+// }
+
+// function show() {
+//   document.getElementById("dialog").show();
+// }
