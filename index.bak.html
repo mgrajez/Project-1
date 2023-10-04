@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jumpy</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800&display=swap");
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- INTRO -->
+      <section id="game-intro">
+        <div id="game-intro">
+          <img src="./images/logo-1.png" alt="Jumpy logo" class="logo-img" />
+          <br />
+          <p class="intro-text">
+            Help <strong><i>Jumpy</i></strong> get back home safe and sound
+            <br />
+            by avoiding the obstacles on his way.
+          </p>
+          <button class="start-button">PLAY</button>
+        </div>
+      </section>
+      <!-- GAME -->
+      <section id="game-container">
+        <div id="game-screen" class="hidden"></div>
+      </section>
+      <!-- END SCREEN -->
+      <section id="game-end" class="hidden">
+        <img src="./images/logo-1.png" alt="" class="logo-end" />
+        <h1 class="game-over">Game Over</h1>
+        <button class="restart-button">RESTART</button>
+      </section>
+    </main>
+  </body>
+  <script src="index.js"></script>
+</html>
