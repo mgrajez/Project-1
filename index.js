@@ -16,6 +16,7 @@ const arrayOfImages = [
   "./images/chili.png",
   "./images/celebration.png",
   "./images/pinata-1.png",
+  "./images/cactus-4.png",
   "./images/skull.png",
   "./images/man.png",
   "./images/tequila.png",
@@ -35,10 +36,22 @@ const arrayOfImages = [
   "./images/skull2.png",
   "./images/cactus-3.png",
 ];
+const characterImages = {
+  run: ["./images/jumpy-run1.png", "./images/jumpy-run2.png"],
+  crouch: "./images/jumpy-crouch.png",
+};
+const sound = {
+  jumpSound: new Audio("/music/jump-sound.mp3"),
+  gameOverSound: new Audio("/music/game-over-sound.mp3"),
+};
 
+let characterState = "running";
+let imageCounter = 0;
 let counter = 0;
 let position = gameScreen.getBoundingClientRect().width;
 let myInterval = null;
+let level = 1;
+let time = 0;
 
 startButton.addEventListener("click", () => {
   startGame();
@@ -65,26 +78,47 @@ function replayGame() {
   gameSection.style.display = "block";
   counter = 0;
   position = gameScreen.getBoundingClientRect().width;
-  gameLoop();
   speed = 3;
+  level = 1;
+  updateLevel();
+  gameLoop();
 }
 
 function jump() {
   character.classList.add("jump");
 }
-// setTimeout(() => {
-//   character.classList.toggle("animate");
-// }, 500);
 
 document.addEventListener("keydown", (event) => {
   console.log(event.key);
   if (event.key === " ") {
     jump();
+    sound.jumpSound.play();
+  } else if (event.key === "ArrowDown") {
+    characterState = "crouching";
   }
 });
+document.addEventListener("keyup", (event) => {
+  if (event.key === "ArrowDown") {
+    characterState = "running";
+  }
+});
+
 character.addEventListener("animationend", () =>
   character.classList.remove("jump")
 );
+
+function updateLevel() {
+  document.getElementById("level-counter").textContent = "Level " + level;
+}
+
+// const myLevel = setInterval(() => {
+//   time += 20;
+//   updateLevel();
+
+//   if (checkCollision(character, block)) {
+//     clearInterval(myLevel);
+//   }
+// }, 20000);
 
 // Obstacles
 
@@ -93,6 +127,19 @@ function gameLoop() {
     frameCounter++;
     if (frameCounter % 600 === 0) {
       speed += 1;
+    }
+    if (frameCounter % 1200 === 0) {
+      level++;
+      updateLevel();
+    }
+    if (characterState === "crouching") {
+      character.src = characterImages.crouch;
+    } else {
+      if (frameCounter % 15 === 0) {
+        imageCounter++;
+      }
+      character.src =
+        characterImages.run[imageCounter % characterImages.run.length];
     }
     position -= speed;
     block.style.left = position + "px";
@@ -108,7 +155,8 @@ function gameLoop() {
       myInterval = null;
       // displayGameover();
       // dialog.show();
-      endGame();
+      sound.gameOverSound.play();
+      // endGame();
     }
   }, 1000 / 60);
 }

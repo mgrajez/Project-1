@@ -37,8 +37,8 @@ body {
 
 .intro-text {
   font-size: 1.5rem;
-  margin: 0 0 1.2rem 0;
-  color: #fff;
+  margin: 0 0 1rem 0;
+  color: whitesmoke;
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
   text-wrap: balance;
@@ -74,6 +74,7 @@ body {
 }
 
 /* GAME SCREEN */
+
 * {
   padding: 0;
   margin: 0;
@@ -87,9 +88,44 @@ html {
   justify-content: center;
 }
 
-/* .logo-game {
-  width: 350px;
-} */
+.logo-position {
+  /* display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  position: fixed;
+  top: 0;
+  margin-top: 18px;
+  margin-left: 820px; */
+  background-color: red;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#game {
+  width: 100vw;
+  background-color: blue;
+}
+
+.sound-icon {
+  height: 60px;
+}
+
+.logo-game {
+  height: 180px;
+}
+
+.game-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#level-counter {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
 
 .game {
   width: 900px;
@@ -108,7 +144,7 @@ html {
   text-align: unset;
 }
 .jump {
-  animation: jump 1.1s;
+  animation: jump 1.2s;
 }
 
 @keyframes jump {
@@ -133,6 +169,16 @@ html {
   bottom: 0;
   left: 900px;
   animation: block 4s infinite;
+}
+
+.chain {
+  height: 50px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 75px;
+  margin-left: 110px;
 }
 
 /* END SCREEN */
