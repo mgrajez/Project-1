@@ -6,4 +6,4 @@ Just press the spacebar to jump through obstacles and help Jumpy get back home.
 
 
 Play it! 
-https://mgrajez.github.io/Project-1/
+[Play the game](https://mgrajez.github.io/Project-1/)
