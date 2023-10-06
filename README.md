@@ -1,4 +1,4 @@
-# Jumpy Game
+# Jumpy Game 🌵
 
 ## What is it?
 Jumpy is your favourite T-Rex game from Google Chrome with a refreshed look and a new theme. Let's go to Mexico!
