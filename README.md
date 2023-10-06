@@ -1,9 +1,17 @@
-Jumpy Game
+# Jumpy Game
 
-Jumpy is your favourite T-rex game with a refreshed look and a new theme. Let's go to Mexico!
+## What is it?
+Jumpy is your favourite T-Rex game from Google Chrome with a refreshed look and a new theme. Let's go to Mexico!
 
-Just press the spacebar to jump through obstacles and help Jumpy get back home.
+This game was my first project after joining the Web Development bootcamp at IRONHACK Paris.
 
+---
 
-Play it! 
-[Play the game](https://mgrajez.github.io/Project-1/)
+## Functionality
+Just press the **spacebar** to jump through obstacles and help Jumpy get back home.
+
+---
+
+## Play it! 
+[Play the game here](https://mgrajez.github.io/Project-1/)
+
