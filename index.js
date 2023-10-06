@@ -41,10 +41,10 @@ const characterImages = {
   crouch: "./images/jumpy-crouch.png",
 };
 const sound = {
-  jumpSound: new Audio("/music/jump-sound.mp3"),
-  gameOverSound: new Audio("/music/game-over-sound.mp3"),
-  buttonsSound: new Audio("/music/buttons-sound.mp3"),
-  gameMusic: new Audio("/music/game-music.mp3"),
+  jumpSound: new Audio("./music/jump-sound.mp3"),
+  gameOverSound: new Audio("./music/game-over-sound.mp3"),
+  buttonsSound: new Audio("./music/buttons-sound.mp3"),
+  gameMusic: new Audio("./music/game-music.mp3"),
 };
 
 let characterState = "running";
