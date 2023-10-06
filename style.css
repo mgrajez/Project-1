@@ -96,14 +96,12 @@ html {
   top: 0;
   margin-top: 18px;
   margin-left: 820px; */
-  background-color: red;
   display: flex;
   justify-content: flex-end;
 }
 
 #game {
   width: 100vw;
-  background-color: blue;
 }
 
 .sound-icon {
@@ -112,12 +110,19 @@ html {
 
 .logo-game {
   height: 180px;
+  padding-right: 14rem;
 }
 
 .game-screen {
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+}
+
+.gameNoLetters {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 

@@ -43,6 +43,8 @@ const characterImages = {
 const sound = {
   jumpSound: new Audio("/music/jump-sound.mp3"),
   gameOverSound: new Audio("/music/game-over-sound.mp3"),
+  buttonsSound: new Audio("/music/buttons-sound.mp3"),
+  gameMusic: new Audio("/music/game-music.mp3"),
 };
 
 let characterState = "running";
@@ -53,11 +55,17 @@ let myInterval = null;
 let level = 1;
 let time = 0;
 
+sound.gameMusic.loop = true;
+
 startButton.addEventListener("click", () => {
+  sound.buttonsSound.play();
+  sound.gameMusic.play();
   startGame();
 });
 
 restartButton.addEventListener("click", () => {
+  sound.buttonsSound.play();
+  sound.gameMusic.play();
   replayGame();
 });
 
@@ -65,12 +73,14 @@ function startGame() {
   mainScreen.style.display = "none";
   gameSection.style.display = "block";
   position = gameScreen.getBoundingClientRect().width;
+  sound.gameMusic.play();
   gameLoop();
 }
 
 function endGame() {
   gameSection.style.display = "none";
   endScreen.style.display = "block";
+  sound.gameMusic.pause();
 }
 
 function replayGame() {
@@ -150,13 +160,12 @@ function gameLoop() {
     }
 
     if (checkCollision(character, block)) {
-      // alert("game over");
       clearInterval(myInterval);
       myInterval = null;
       // displayGameover();
       // dialog.show();
+      endGame();
       sound.gameOverSound.play();
-      // endGame();
     }
   }, 1000 / 60);
 }
